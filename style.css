@@ -27,7 +27,7 @@ body {
     background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
 }
 
-/* Lógica de Idiomas */
+/* CONTROLO EXCLUSIVO DE IDIOMAS */
 body.lang-pt .lang-en { display: none !important; }
 body.lang-en .lang-pt { display: none !important; }
 
@@ -183,12 +183,12 @@ p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; max-
 #sobre::before { display: none; }
 
 
-/* --- ANIMAÇÃO EXECUTIVA: LENS FOCUS PULL (IN & OUT) --- */
+/* --- ANIMAÇÃO PADRÃO DA BLASTER (SÓ ENTRADA) --- */
 .fade-in-up { 
     opacity: 0; 
     filter: blur(12px);
     transform: scale(0.95); 
-    transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    transition: opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     will-change: opacity, filter, transform; 
 }
 .fade-in-up.visible { opacity: 1; filter: blur(0px); transform: scale(1); }
@@ -239,3 +239,13 @@ footer { padding: 120px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); text
 .social-links { margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; }
 .social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .social-links a:hover { color: var(--accent-pink); }
+
+
+/* --- RESPONSIVIDADE EXCLUSIVA PARA TELEMÓVEIS (ANTI-ESMAGAMENTO) --- */
+@media (max-width: 768px) {
+    .contact-info {
+        flex-direction: column; /* Coloca o número de telefone por baixo do e-mail */
+        gap: 1.2rem;            /* Cria um espaço confortável entre os dois */
+        align-items: center;    /* Garante que ambos ficam bem centrados */
+    }
+}

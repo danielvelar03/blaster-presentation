@@ -1,40 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* --- LÓGICA DO IDIOMA --- */
+    /* --- LÓGICA DO IDIOMA SEM FALHAS --- */
     window.setLanguage = function(lang) {
         const body = document.body;
         const btnPt = document.getElementById('btn-pt');
         const btnEn = document.getElementById('btn-en');
-        const ptElements = document.querySelectorAll('.lang-pt');
-        const enElements = document.querySelectorAll('.lang-en');
 
         if (lang === 'pt') {
             body.className = 'lang-pt';
-            btnPt.classList.add('active');
-            btnEn.classList.remove('active');
-            ptElements.forEach(el => el.style.display = '');
-            enElements.forEach(el => el.style.display = 'none');
+            if (btnPt) btnPt.classList.add('active');
+            if (btnEn) btnEn.classList.remove('active');
         } else if (lang === 'en') {
             body.className = 'lang-en';
-            btnEn.classList.add('active');
-            btnPt.classList.remove('active');
-            enElements.forEach(el => el.style.display = '');
-            ptElements.forEach(el => el.style.display = 'none');
+            if (btnEn) btnEn.classList.add('active');
+            if (btnPt) btnPt.classList.remove('active');
         }
-        checkAnimationVisibility();
+        
+        // CORREÇÃO DA TELA BRANCA: Força a renderização imediata da opacidade
+        setTimeout(checkAnimationVisibility, 30);
     }
     const bodyClass = document.body.className;
     setLanguage(bodyClass.includes('lang-pt') ? 'pt' : 'en');
 
 
-    /* --- ANIMAÇÕES DE SCROLL DINÂMICAS (IN & OUT) --- */
+    /* --- ANIMAÇÕES DE SCROLL PADRÃO (SÓ ENTRADA / REVERTIDO) --- */
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            } else {
-                entry.target.classList.remove('visible');
+                entry.target.classList.add('visible'); // Aparece e fica fixo
             }
         });
     }, observerOptions);
@@ -42,14 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.fade-in-up');
     animatedElements.forEach(el => observer.observe(el));
 
+    // Forçador de visibilidade para evitar bugs ao trocar de língua
     function checkAnimationVisibility() {
         const elements = document.querySelectorAll('.fade-in-up');
         elements.forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight && rect.bottom >= 0) {
                 el.classList.add('visible');
-            } else {
-                el.classList.remove('visible');
             }
         });
     }
@@ -78,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* --- LÓGICA DO CARROSSEL V16 CORRIGIDA (SEM DUPLO SALTO) --- */
+/* --- LÓGICA DO CARROSSEL V16 (RITMO FIXO 2.5S / SEM DUPLO SALTO) --- */
 window.addEventListener('load', () => {
     const track = document.getElementById('logo-track');
     const prevBtn = document.getElementById('prev-btn');
@@ -102,8 +95,7 @@ window.addEventListener('load', () => {
         track.style.transform = `translateX(-${slideAmount}px)`;
 
         track.addEventListener('transitionend', function onTransitionEnd(e) {
-            // CORREÇÃO: Ignora animações internas (ex: hover do logo) para evitar saltos duplos
-            if (e.target !== track) return; 
+            if (e.target !== track) return; // Ignora o ruído do mouse hover interno
             
             track.style.transition = 'none';
             track.appendChild(track.firstElementChild);
@@ -122,7 +114,7 @@ window.addEventListener('load', () => {
         track.insertBefore(track.lastElementChild, track.firstElementChild);
         track.style.transform = `translateX(-${slideAmount}px)`;
 
-        track.offsetHeight; // Força re-render
+        track.offsetHeight; // Force reflow
 
         track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         track.style.transform = 'translateX(0)';
