@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaster Image Works | Produtora Criativa</title>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Ligação ao CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="lang-pt">
+
+    <!-- Efeito de Grão de Filme -->
+    <div class="film-grain"></div>
+
+    <!-- Top Header -->
+    <header>
+        <a href="https://www.blasterimageworks.com" target="_blank" class="brand-logo magnetic">
+            <img src="LOGOBIW.svg" alt="Blaster Image Works">
+        </a>
+        
+        <nav class="lang-nav magnetic">
+            <button id="btn-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+            <span class="lang-divider">|</span>
+            <button id="btn-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="BIW_LINHAS_TOPO_4K.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+
+        <div class="hero-container">
+            <!-- Centro: Texto Principal -->
+            <div class="hero-main-content">
+                <span class="hero-subtitle fade-in-up lang-pt">Apresentação Executiva</span>
+                <span class="hero-subtitle fade-in-up lang-en" style="display:none;">Corporate Presentation</span>
+                
+                <h1 class="fade-in-up delay-1 lang-pt">Na Blaster Image Works, não nos contentamos com o comum.</h1>
+                <h1 class="fade-in-up delay-1 lang-en" style="display:none;">At Blaster Image Works, we don't settle for the ordinary.</h1>
+                
+                <p class="fade-in-up delay-2 lang-pt">Da fotografia ao vídeo, esforçamo-nos para criar imagens impressionantes. Somos contadores de histórias.</p>
+                <p class="fade-in-up delay-2 lang-en" style="display:none;">From photography to video, we strive to create stunning imagery. We are storytellers.</p>
+                
+                <a href="https://www.blasterimageworks.com" target="_blank" class="hero-site-link fade-in-up delay-3 lang-pt magnetic">
+                    Visita o nosso Website
+                </a>
+                <a href="https://www.blasterimageworks.com" target="_blank" class="hero-site-link fade-in-up delay-3 lang-en magnetic" style="display:none;">
+                    Visit our Website
+                </a>
+            </div>
+
+            <!-- Base: Logo Carousel -->
+            <div class="carousel-wrapper fade-in-up delay-4">
+                <button class="carousel-btn prev-btn magnetic" id="prev-btn">&#8249;</button>
+                <div class="clients-carousel">
+                    <div class="carousel-track" id="logo-track">
+                        <!-- SET 1 -->
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/ANDANTE@2x.png" class="carousel-logo" alt="Andante">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/BBC@2x.png" class="carousel-logo" alt="BBC">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/BENTLEY@2x.png" class="carousel-logo" alt="Bentley">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/CEPHEID@2x.png" class="carousel-logo" alt="Cepheid">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/COLLAB@2x.png" class="carousel-logo" alt="Collab">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/EDIGMA@2x.png" class="carousel-logo" alt="Edigma">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/FEUP@2x.png" class="carousel-logo" alt="FEUP">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/FOWALK@2x.png" class="carousel-logo" alt="Fowalk">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/FYKE@2x.png" class="carousel-logo" alt="Fyke">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/GONDOMAR@2x.png" class="carousel-logo" alt="Gondomar">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/MOOBO@2x.png" class="carousel-logo" alt="Moobo">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/MORECOLAB@2x.png" class="carousel-logo" alt="Morecolab">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/OLICARGO@2x.png" class="carousel-logo" alt="Olicargo">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/SERTA@2x.png" class="carousel-logo" alt="Serta">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/SUPERBOCK@2x.png" class="carousel-logo" alt="Super Bock">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/TMP@2x.png" class="carousel-logo" alt="TMP">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/UNIR@2x.png" class="carousel-logo" alt="Unir">
+                        <!-- SET 2 -->
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/ANDANTE@2x.png" class="carousel-logo" alt="Andante">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/BBC@2x.png" class="carousel-logo" alt="BBC">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/BENTLEY@2x.png" class="carousel-logo" alt="Bentley">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/CEPHEID@2x.png" class="carousel-logo" alt="Cepheid">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/COLLAB@2x.png" class="carousel-logo" alt="Collab">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/EDIGMA@2x.png" class="carousel-logo" alt="Edigma">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/FEUP@2x.png" class="carousel-logo" alt="FEUP">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/FOWALK@2x.png" class="carousel-logo" alt="Fowalk">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/FYKE@2x.png" class="carousel-logo" alt="Fyke">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/GONDOMAR@2x.png" class="carousel-logo" alt="Gondomar">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/MOOBO@2x.png" class="carousel-logo" alt="Moobo">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/MORECOLAB@2x.png" class="carousel-logo" alt="Morecolab">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/OLICARGO@2x.png" class="carousel-logo" alt="Olicargo">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/SERTA@2x.png" class="carousel-logo" alt="Serta">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/SUPERBOCK@2x.png" class="carousel-logo" alt="Super Bock">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/TMP@2x.png" class="carousel-logo" alt="TMP">
+                        <img src="LOGOS%20MARCAS%20PARCEIROS/UNIR@2x.png" class="carousel-logo" alt="Unir">
+                    </div>
+                </div>
+                <button class="carousel-btn next-btn magnetic" id="next-btn">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conteúdo Principal -->
+    <main class="content-layer">
+        
+        <!-- Quem Somos -->
+        <section id="sobre" class="container content-section">
+            <span class="section-label fade-in-up lang-pt">Quem Somos</span>
+            <span class="section-label fade-in-up lang-en">About Us</span>
+            <h2 class="fade-in-up delay-1 lang-pt">Visão autoral com rigor técnico.</h2>
+            <h2 class="fade-in-up delay-1 lang-en">Authorial vision with technical rigor.</h2>
+            <div class="lang-pt">
+                <p class="fade-in-up delay-2">A Blaster Image Works é uma produtora criativa de vídeo e fotografia que opera com um modelo leve, escalável e orientado à criação de valor acrescentado.</p>
+                <p class="fade-in-up delay-2">Da ficção ao documentário, da publicidade ao vídeo corporativo, dos filmes de moda aos videoclips, o conteúdo é sempre visto como uma prioridade; portanto, connosco, nenhuma história fica por contar.</p>
+            </div>
+            <div class="lang-en">
+                <p class="fade-in-up delay-2">Blaster Image Works is a creative video and photography production company operating on a lean, scalable model focused on value creation.</p>
+                <p class="fade-in-up delay-2">From fiction to documentary, advertising to corporate video, fashion films to music videos, content is always treated as a priority; therefore, with us, no story is left untold.</p>
+            </div>
+        </section>
+
+        <!-- Trabalhos -->
+        <section id="trabalhos" class="container content-section">
+            <span class="section-label fade-in-up lang-pt">Trabalhos</span>
+            <span class="section-label fade-in-up lang-en">Our Work</span>
+            <h2 class="fade-in-up delay-1 lang-pt">O nosso portefólio.</h2>
+            <h2 class="fade-in-up delay-1 lang-en">Our portfolio.</h2>
+            <div class="video-grid">
+                <div class="video-item fade-in-up delay-2">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/hGcgFDQjm9o" title="Nordeste" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info"><h3>Nordeste</h3></div>
+                </div>
+                <div class="video-item fade-in-up">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/QD3uBG-jsGQ" title="Descobre o teu Interior" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="lang-pt">Descobre o teu Interior</h3>
+                        <h3 class="lang-en">Discover Your Interior</h3>
+                    </div>
+                </div>
+                <div class="video-item fade-in-up">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/23LAiYlqfJw" title="Carnaval de Podence" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="lang-pt">Carnaval de Podence</h3>
+                        <h3 class="lang-en">Podence Carnival</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modelo de Produção -->
+        <section id="modelo" class="container content-section">
+            <span class="section-label fade-in-up lang-pt">O Nosso Modelo</span>
+            <span class="section-label fade-in-up lang-en">Our Model</span>
+            <h2 class="fade-in-up delay-1 lang-pt">Produção escalável e à medida.</h2>
+            <h2 class="fade-in-up delay-1 lang-en">Scalable and tailored production.</h2>
+            <div class="model-grid lang-pt">
+                <div class="model-card fade-in-up delay-1">
+                    <h3>Modelo Modular e Flexível</h3>
+                    <p>Trabalhamos com uma rede de profissionais especializados para montar a equipa certa em função do briefing, orçamento e complexidade técnica.</p>
+                </div>
+                <div class="model-card fade-in-up delay-2">
+                    <h3>Foco no Objetivo do Cliente</h3>
+                    <p>Criamos soluções que equilibram linguagem estética, estratégia de comunicação e viabilidade de produção.</p>
+                </div>
+                <div class="model-card fade-in-up delay-3">
+                    <h3>Da ideia à entrega final</h3>
+                    <p>Oferecemos produção 360º: conceito, realização, filmagem, edição e entrega.</p>
+                </div>
+            </div>
+            <div class="model-grid lang-en">
+                <div class="model-card fade-in-up delay-1">
+                    <h3>Modular & Flexible Model</h3>
+                    <p>We work with a network of specialized professionals to assemble the right team based on the briefing, budget, and technical complexity.</p>
+                </div>
+                <div class="model-card fade-in-up delay-2">
+                    <h3>Client-Centric Focus</h3>
+                    <p>We create solutions that balance aesthetic language, communication strategy, and production feasibility.</p>
+                </div>
+                <div class="model-card fade-in-up delay-3">
+                    <h3>From Concept to Final Delivery</h3>
+                    <p>We offer 360º production: concept, directing, filming, editing, and delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+        <section id="servicos" class="container content-section">
+            <span class="section-label fade-in-up lang-pt">Serviços</span>
+            <span class="section-label fade-in-up lang-en">Services</span>
+            <h2 class="fade-in-up delay-1 lang-pt">O que fazemos.</h2>
+            <h2 class="fade-in-up delay-1 lang-en">What we do.</h2>
+            <div class="services-grid lang-pt">
+                <div class="service-category fade-in-up delay-1">
+                    <h3>Vídeo</h3>
+                    <ul class="service-list">
+                        <li>Institucionais</li><li>Docubrands</li><li>Comerciais / Publicidade</li><li>Conteúdos para redes sociais</li>
+                    </ul>
+                </div>
+                <div class="service-category fade-in-up delay-2">
+                    <h3>Fotografia</h3>
+                    <ul class="service-list">
+                        <li>Editorial</li><li>Publicitária</li><li>Eventos</li><li>Moda</li><li>Produto</li>
+                    </ul>
+                </div>
+                <div class="service-category fade-in-up delay-3">
+                    <h3>Consultoria Criativa</h3>
+                    <ul class="service-list">
+                        <li>Guião e storytelling</li><li>Direção de produção (contactos, licenças, material, equipa)</li><li>Planeamento de captação</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="services-grid lang-en">
+                <div class="service-category fade-in-up delay-1">
+                    <h3>Video</h3>
+                    <ul class="service-list">
+                        <li>Corporate</li><li>Docubrands</li><li>Commercials / Advertising</li><li>Social Media Content</li>
+                    </ul>
+                </div>
+                <div class="service-category fade-in-up delay-2">
+                    <h3>Photography</h3>
+                    <ul class="service-list">
+                        <li>Editorial</li><li>Advertising</li><li>Events</li><li>Fashion</li><li>Product</li>
+                    </ul>
+                </div>
+                <div class="service-category fade-in-up delay-3">
+                    <h3>Creative Consulting</h3>
+                    <ul class="service-list">
+                        <li>Scriptwriting & Storytelling</li><li>Production Management (contacts, permits, crew)</li><li>Image Capture Planning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container fade-in-up">
+                <h2 class="lang-pt">Vamos trabalhar juntos.</h2>
+                <h2 class="lang-en">Let's work together.</h2>
+                <div class="contact-info">
+                    <a href="mailto:info@blasterimageworks.com" class="magnetic">info@blasterimageworks.com</a>
+                    <a href="tel:+351963703000" class="magnetic">+351 963 703 000</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@blasterimageworks" target="_blank" class="magnetic">YouTube</a>
+                    <a href="https://www.instagram.com/blasterimageworks/" target="_blank" class="magnetic">Instagram</a>
+                    <a href="https://www.facebook.com/blasterimageworks" target="_blank" class="magnetic">Facebook</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

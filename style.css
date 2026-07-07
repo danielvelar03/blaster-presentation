@@ -1,0 +1,241 @@
+/* CSS Variables */
+:root {
+    --bg-color: #050505;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --brand-purple-dark: #4900ff;
+    --brand-purple-light: #9600ff;
+    --accent-pink: #ff00c1;
+    --accent-cyan: #00fff9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Grão de Filme Cinematográfico */
+.film-grain {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 9999; opacity: 0.04;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+/* Lógica de Idiomas */
+body.lang-pt .lang-en { display: none !important; }
+body.lang-en .lang-pt { display: none !important; }
+
+/* Header */
+header {
+    position: fixed; top: 0; left: 0; width: 100%; padding: 30px 5% 20px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100; background: linear-gradient(to bottom, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0) 100%);
+}
+
+.brand-logo img { height: 35px; min-width: 100px; width: auto; display: block; }
+
+/* CLASSE MAGNÉTICA IMEDIATA */
+.magnetic { display: inline-block; will-change: transform; }
+
+.lang-nav {
+    background: rgba(5, 5, 5, 0.6); padding: 8px 16px; border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+    display: flex; gap: 10px; align-items: center;
+}
+.lang-btn {
+    background: none; border: none; color: var(--text-secondary);
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: color 0.3s ease;
+}
+.lang-btn:hover { color: var(--text-primary); }
+.lang-btn.active { color: var(--accent-cyan); font-weight: 700; }
+.lang-divider { color: rgba(255, 255, 255, 0.2); font-size: 0.85rem; }
+
+/* Typography */
+h2 {
+    font-size: 2.5rem; margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.section-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-purple-light); margin-bottom: 1rem; display: block; font-weight: 500; }
+.section-label::before { content: "// "; color: var(--accent-cyan); }
+p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 800px; }
+
+
+/* --- HERO SECTION 100% RESPONSIVA --- */
+.hero {
+    min-height: 100vh; position: relative; overflow: hidden;
+    margin: 0; padding: 0;
+}
+.hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.5) 60%, var(--bg-color) 100%); z-index: 2; }
+
+/* Content Hero */
+.hero-container { 
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 4; 
+    display: flex; flex-direction: column; justify-content: space-between; 
+    padding-top: 140px; padding-bottom: 40px; 
+}
+.hero-main-content { 
+    flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+    text-align: center; padding: 0 5%; width: 100%; 
+}
+.hero-subtitle { font-size: 1.4rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1.5rem; font-weight: 400; text-shadow: 0 2px 15px rgba(0, 255, 249, 0.4); }
+
+/* Título H1 dimensionado para 2 linhas */
+.hero h1 { 
+    font-size: clamp(1.8rem, 3.5vw, 3rem); 
+    margin-bottom: 1.5rem; 
+    max-width: 850px; 
+    margin-left: auto; margin-right: auto;
+    color: #ffffff; text-shadow: 0 4px 25px rgba(0,0,0,0.9);
+    line-height: 1.2;
+}
+
+.hero p { margin: 0 auto 2.5rem auto; font-size: clamp(1.1rem, 2vw, 1.3rem); color: #e0e0e0; max-width: 800px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+
+/* Botão Website */
+.hero-site-link {
+    display: inline-block;
+    font-size: 1rem;
+    color: var(--accent-cyan);
+    text-decoration: none;
+    border: 1px solid rgba(0, 255, 249, 0.3);
+    padding: 15px 35px;
+    border-radius: 4px;
+    background: rgba(0, 255, 249, 0.02);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+}
+
+.hero-site-link:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(0, 255, 249, 0.4);
+    border-color: var(--accent-cyan);
+}
+
+/* --- LOGO CARROSSEL FLUIDO ORIGINAL --- */
+.carousel-wrapper { 
+    width: 100%; max-width: 1400px; padding: 0 5%; 
+    display: flex; align-items: center; justify-content: space-between; 
+    margin: 0 auto; z-index: 4; 
+}
+
+.carousel-btn { 
+    background: transparent; border: none; color: rgba(255, 255, 255, 0.5); 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 2.8rem; font-weight: 300; padding: 10px; cursor: pointer; 
+    transition: color 0.3s ease, text-shadow 0.3s ease; 
+}
+.carousel-btn:hover { color: var(--accent-cyan); text-shadow: 0 0 15px rgba(0, 255, 249, 0.4); }
+
+.clients-carousel { 
+    display: flex; flex-grow: 1; overflow: hidden; position: relative; margin: 0 1.5rem; 
+    justify-content: flex-start !important; text-align: left !important;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); 
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent); 
+}
+
+.carousel-track { 
+    display: flex; align-items: center; gap: 5rem; width: max-content; 
+    justify-content: flex-start !important;
+}
+
+.carousel-logo { height: 55px; opacity: 1 !important; object-fit: contain; flex-shrink: 0; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5)); transition: transform 0.3s ease; }
+.carousel-logo:hover { transform: scale(1.08); }
+
+
+/* Camada Secundária */
+.content-layer { position: relative; z-index: 10; background-color: var(--bg-color); }
+
+.container { 
+    max-width: 1200px; 
+    margin-left: auto; margin-right: auto; 
+    padding-left: 5%; padding-right: 5%; 
+}
+
+/* Espaçamentos das Secções */
+.content-section {
+    padding-top: 140px; 
+    padding-bottom: 140px;
+    margin-top: 0; 
+    position: relative;
+}
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#sobre::before { display: none; }
+
+
+/* --- ANIMAÇÃO EXECUTIVA: LENS FOCUS PULL (IN & OUT) --- */
+.fade-in-up { 
+    opacity: 0; 
+    filter: blur(12px);
+    transform: scale(0.95); 
+    transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    will-change: opacity, filter, transform; 
+}
+.fade-in-up.visible { opacity: 1; filter: blur(0px); transform: scale(1); }
+.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
+
+
+/* Grelha Vídeos */
+.video-grid { display: flex; flex-direction: column; gap: 8rem; margin-top: 4rem; }
+.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); margin-bottom: 1.5rem; border: 1px solid rgba(150, 0, 255, 0.1); transition: border-color 0.4s ease; }
+.video-container:hover { border-color: var(--brand-purple-light); }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.video-info h3 { font-size: 1.5rem; color: var(--text-primary); }
+
+
+/* Cartões do Modelo */
+.model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem; }
+
+.model-card { 
+    background: rgba(255, 255, 255, 0.02); 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    padding: 3rem; 
+    border-radius: 8px; 
+    border-left: 2px solid var(--accent-pink); 
+    transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.4s ease;
+}
+
+.model-card:hover { 
+    background: rgba(255, 255, 255, 0.04); 
+    transform: translateY(-5px); 
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.model-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-primary); }
+
+
+/* Serviços */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem; margin-top: 3rem; }
+.service-category h3 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-primary); display: inline-block; border-bottom: 2px solid var(--brand-purple-dark); padding-bottom: 0.5rem; }
+.service-list { list-style: none; }
+.service-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; color: var(--text-secondary); }
+.service-list li::before { content: "+"; position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold; }
+
+/* Footer */
+footer { padding: 120px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
+.contact-info { margin: 2rem 0; display: flex; justify-content: center; gap: 2rem; }
+.contact-info a { color: var(--text-primary); text-decoration: none; font-size: 1.2rem; transition: color 0.3s ease; }
+.contact-info a:hover { color: var(--accent-cyan); }
+.social-links { margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; }
+.social-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.social-links a:hover { color: var(--accent-pink); }
