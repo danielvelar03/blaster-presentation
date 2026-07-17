@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnPt) btnPt.classList.remove('active');
         }
         
-        // Força a renderização imediata da opacidade ao trocar de língua
         setTimeout(checkAnimationVisibility, 30);
     }
     const bodyClass = document.body.className;
@@ -28,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');    // Animação de Entrada
+                entry.target.classList.add('visible');   
             } else {
-                entry.target.classList.remove('visible'); // Animação de Saída (Volta a ocultar ao sair da tela)
+                entry.target.classList.remove('visible');
             }
         });
     }, observerOptions);
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.fade-in-up');
     animatedElements.forEach(el => observer.observe(el));
 
-    // Sincronizador de visibilidade para garantir o estado correto em resizes ou mudanças de língua
     function checkAnimationVisibility() {
         const elements = document.querySelectorAll('.fade-in-up');
         elements.forEach(el => {
@@ -51,8 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    /* --- BOTÕES MAGNÉTICOS (DESATIVADOS EM TELEMÓVEIS / ANTI-BUG) --- */
+    /* --- BOTÕES MAGNÉTICOS --- */
     if (window.innerWidth > 768) {
         const magnetics = document.querySelectorAll('.magnetic');
         magnetics.forEach(btn => {
@@ -77,100 +74,135 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* --- LÓGICA DO CARROSSEL V16 (RITMO FIXO 2.5S / SEM DUPLO SALTO) --- */
+/* --- LÓGICA DO CARROSSEL NOVO (OPACIDADE DA IMAGEM E FADE) --- */
 window.addEventListener('load', () => {
     const track = document.getElementById('logo-track');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const wrapper = document.querySelector('.carousel-wrapper');
-    let isTransitioning = false;
-    let autoSlideInterval;
+    
+    let isAnimating = false;
+    let autoPlayInterval;
 
-    function getSlideAmount() {
-        const firstLogo = track.firstElementChild;
-        const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
-        return firstLogo.offsetWidth + gap; 
+    function getVisibleCount() {
+        return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--logos-visiveis').trim()) || 5;
     }
 
-    function slideNext() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        const slideAmount = getSlideAmount();
+    function updateVisibleClasses(action) {
+        if (!track) return;
+        const visibleCount = getVisibleCount();
+        const slides = track.children;
 
-        track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        track.style.transform = `translateX(-${slideAmount}px)`;
+        if (action === 'next') {
+            slides[0].classList.remove('is-visible');
+            if(slides[visibleCount]) slides[visibleCount].classList.add('is-visible');
+        } else if (action === 'prev') {
+            slides[0].classList.add('is-visible');
+            if(slides[visibleCount]) slides[visibleCount].classList.remove('is-visible');
+        } else {
+            for (let i = 0; i < slides.length; i++) {
+                if (i < visibleCount) {
+                    slides[i].classList.add('is-visible');
+                } else {
+                    slides[i].classList.remove('is-visible');
+                }
+            }
+        }
+    }
 
-        track.addEventListener('transitionend', function onTransitionEnd(e) {
-            if (e.target !== track) return; 
+    if (track) updateVisibleClasses('init');
+
+    function getSlideWidth() {
+        if (!track || !track.firstElementChild) return 0;
+        return track.firstElementChild.getBoundingClientRect().width;
+    }
+
+    function moveNext() {
+        if (isAnimating || !track) return; 
+        isAnimating = true;
+
+        const slideWidth = getSlideWidth();
+
+        updateVisibleClasses('next');
+
+        track.style.transition = 'transform 0.8s ease-in-out';
+        track.style.transform = `translateX(-${slideWidth}px)`;
+
+        setTimeout(() => {
+            track.style.transition = 'none'; 
+            track.appendChild(track.firstElementChild); 
+            track.style.transform = 'translateX(0)'; 
             
-            track.style.transition = 'none';
-            track.appendChild(track.firstElementChild);
-            track.style.transform = 'translateX(0)';
-            track.removeEventListener('transitionend', onTransitionEnd);
-            isTransitioning = false;
-        });
+            track.offsetHeight; 
+            isAnimating = false; 
+        }, 800);
     }
 
-    // Botão Anterior
-    function slidePrev() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        const slideAmount = getSlideAmount();
+    function movePrev() {
+        if (isAnimating || !track) return;
+        isAnimating = true;
+
+        const slideWidth = getSlideWidth();
 
         track.style.transition = 'none';
         track.insertBefore(track.lastElementChild, track.firstElementChild);
-        track.style.transform = `translateX(-${slideAmount}px)`;
+        track.style.transform = `translateX(-${slideWidth}px)`;
 
         track.offsetHeight; 
 
-        track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        updateVisibleClasses('prev');
+
+        track.style.transition = 'transform 0.8s ease-in-out';
         track.style.transform = 'translateX(0)';
 
-        track.addEventListener('transitionend', function onTransitionEnd(e) {
-            if (e.target !== track) return; 
-            
-            track.removeEventListener('transitionend', onTransitionEnd);
-            isTransitioning = false;
-        });
+        setTimeout(() => {
+            isAnimating = false;
+        }, 800);
     }
 
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(slideNext, 2500);
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(moveNext, 2500); 
     }
 
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-    }
-
-    startAutoSlide();
-
-    if (wrapper) {
-        wrapper.addEventListener('mouseenter', stopAutoSlide);
-        wrapper.addEventListener('mouseleave', startAutoSlide);
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay(); 
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            slideNext();
-            startAutoSlide(); 
+            moveNext();
+            resetAutoPlay();
         });
     }
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            stopAutoSlide();
-            slidePrev();
-            startAutoSlide(); 
+            movePrev();
+            resetAutoPlay();
         });
     }
+
+    if (wrapper) {
+        wrapper.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        wrapper.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    window.addEventListener('resize', () => {
+        if (!isAnimating && track) {
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
+            updateVisibleClasses('init');
+        }
+    });
+
+    startAutoPlay();
 });
 
 /* --- CONTROLO DA SETA VOLTAR AO TOPO & SMOOTH SCROLL --- */
 document.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.getElementById('back-to-top');
 
-    // Mostra a seta após dar um scroll superior a 250px
     window.addEventListener('scroll', () => {
         if (window.scrollY > 250) {
             scrollTopBtn.classList.add('show');
@@ -179,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Evento de clique para subir ao topo de forma suave (Smooth)
     scrollTopBtn.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({
@@ -188,13 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth scroll ativo também para os links das secções do menu lateral
     const sideLinks = document.querySelectorAll('.side-navigation a[href^="#"]');
     sideLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || targetId === '#top') return;
             
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
